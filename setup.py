@@ -6,7 +6,7 @@ setup(
     name="plugnpass",
     version="1.0.0",
     author="adermgram",
-    author_email="your.email@example.com",
+    author_email="adamidrisadam004@gmail.com",
     description="iPhone File Transfer Utility for Linux",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",

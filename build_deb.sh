@@ -23,7 +23,7 @@ rm -f ../plugnpass_*.buildinfo
 
 # Build the package
 echo "Building package..."
-dpkg-buildpackage -us -uc -b
+dpkg-buildpackage -us -uc -b -d
 
 # Check if build was successful
 if [ $? -eq 0 ]; then
