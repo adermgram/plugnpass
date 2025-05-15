@@ -1,0 +1,10 @@
+plugnpass (1.0.0-1) unstable; urgency=medium
+
+  * Initial release of PlugNPass
+  * Features file browsing and transfer for iOS devices
+  * Supports both media and documents access
+  * Includes file filtering to hide system files
+  * Added multi-file selection and transfer
+  * Integrated search functionality
+
+ -- adermgram <your.email@example.com>  Wed, 15 May 2025 12:00:00 +0000 

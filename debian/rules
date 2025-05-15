@@ -1,0 +1,30 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=plugnpass
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_auto_install:
+	dh_auto_install
+	# Create directories
+	mkdir -p debian/plugnpass/usr/bin
+	mkdir -p debian/plugnpass/usr/share/applications
+	mkdir -p debian/plugnpass/usr/share/plugnpass
+	mkdir -p debian/plugnpass/usr/share/doc/plugnpass
+	
+	# Install application
+	cp iphone_file_transfer.py debian/plugnpass/usr/share/plugnpass/
+	chmod +x debian/plugnpass/usr/share/plugnpass/iphone_file_transfer.py
+	
+	# Install launcher script
+	echo '#!/bin/bash' > debian/plugnpass/usr/bin/plugnpass
+	echo 'python3 /usr/share/plugnpass/iphone_file_transfer.py "$@"' >> debian/plugnpass/usr/bin/plugnpass
+	chmod +x debian/plugnpass/usr/bin/plugnpass
+	
+	# Install desktop file
+	cp debian/plugnpass.desktop debian/plugnpass/usr/share/applications/
+	
+	# Install documentation
+	cp README.md debian/plugnpass/usr/share/doc/plugnpass/
+	cp LICENSE debian/plugnpass/usr/share/doc/plugnpass/copyright 

@@ -1,0 +1,25 @@
+Source: plugnpass
+Section: utils
+Priority: optional
+Maintainer: adermgram <your.email@example.com>
+Build-Depends: debhelper-compat (= 13), dh-python, python3-all, python3-setuptools
+Standards-Version: 4.5.1
+Homepage: https://github.com/adermgram/plugnpass
+Vcs-Browser: https://github.com/adermgram/plugnpass
+Vcs-Git: https://github.com/adermgram/plugnpass.git
+Rules-Requires-Root: no
+
+Package: plugnpass
+Architecture: all
+Depends: ${python3:Depends}, ${misc:Depends}, python3-tk, ifuse, libimobiledevice-utils, usbmuxd, fuse
+Description: iPhone File Transfer Utility for Linux
+ PlugNPass (pronounced "Plug and Pass") is a user-friendly
+ utility for transferring files between Linux computers 
+ and iOS devices (iPhone, iPad).
+ .
+ Features:
+  * Media Access: Browse and download photos, videos, and music
+  * Document Transfer: Upload and download files to/from app folders
+  * Multiple File Support: Select and download multiple files at once
+  * File Filtering: Automatically hides system files
+  * Search: Easily find files by name 

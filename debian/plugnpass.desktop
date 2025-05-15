@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=PlugNPass
+Comment=iPhone File Transfer Utility for Linux
+Exec=plugnpass
+Icon=phone
+Terminal=false
+Categories=Utility;FileTools;
+Keywords=iPhone;iOS;iPad;file;transfer; 
