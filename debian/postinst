@@ -1,0 +1,32 @@
+#!/bin/sh
+set -e
+
+# Create necessary directories
+setup_directories() {
+    # Create global mount point
+    if [ ! -d "/var/lib/plugnpass" ]; then
+        mkdir -p /var/lib/plugnpass
+        chmod 1777 /var/lib/plugnpass
+    fi
+    
+    # Update desktop database to show the application in menus
+    if command -v update-desktop-database >/dev/null 2>&1; then
+        update-desktop-database -q
+    fi
+}
+
+case "$1" in
+    configure)
+        setup_directories
+        ;;
+    abort-upgrade|abort-remove|abort-deconfigure)
+        ;;
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0 

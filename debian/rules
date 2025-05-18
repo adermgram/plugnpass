@@ -18,8 +18,7 @@ override_dh_auto_install:
 	chmod +x debian/plugnpass/usr/share/plugnpass/iphone_file_transfer.py
 	
 	# Install launcher script
-	echo '#!/bin/bash' > debian/plugnpass/usr/bin/plugnpass
-	echo 'python3 /usr/share/plugnpass/iphone_file_transfer.py "$@"' >> debian/plugnpass/usr/bin/plugnpass
+	cp launcher.sh debian/plugnpass/usr/bin/plugnpass
 	chmod +x debian/plugnpass/usr/bin/plugnpass
 	
 	# Install desktop file

@@ -11,7 +11,11 @@ Rules-Requires-Root: no
 
 Package: plugnpass
 Architecture: all
-Depends: ${python3:Depends}, ${misc:Depends}, python3-tk, ifuse, libimobiledevice-utils, usbmuxd, fuse
+Depends: ${python3:Depends}, ${misc:Depends}, python3 (>= 3.6), python3-tk, ifuse, libimobiledevice-utils, usbmuxd, fuse | fuse3
+Recommends: libnotify-bin
+Conflicts: iphone-transfer, ios-file-transfer
+Replaces: plugnpass (<< 1.0.0)
+Provides: iphone-file-transfer
 Description: iPhone File Transfer Utility for Linux
  PlugNPass (pronounced "Plug and Pass") is a user-friendly
  utility for transferring files between Linux computers 
@@ -22,4 +26,5 @@ Description: iPhone File Transfer Utility for Linux
   * Document Transfer: Upload and download files to/from app folders
   * Multiple File Support: Select and download multiple files at once
   * File Filtering: Automatically hides system files
-  * Search: Easily find files by name 
+  * Search: Easily find files by name
+  * Cross-platform compatibility with various Linux distributions 

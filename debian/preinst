@@ -1,0 +1,29 @@
+#!/bin/sh
+set -e
+
+# Function to clean up old manual installations
+cleanup_old_installations() {
+    # Common paths where manual installations might exist
+    for path in "/usr/local/bin/plugnpass" "/usr/local/share/plugnpass" "/opt/plugnpass"; do
+        if [ -e "$path" ]; then
+            echo "Removing old installation at $path"
+            rm -rf "$path"
+        fi
+    done
+    
+    # Check for old mount points and clean them
+    if mount | grep -q "iPhoneMount"; then
+        echo "Unmounting any existing iPhone mounts"
+        umount "*/iPhoneMount" 2>/dev/null || true
+    fi
+}
+
+case "$1" in
+    install|upgrade)
+        cleanup_old_installations
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0 

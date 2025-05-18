@@ -50,5 +50,31 @@ read -n 1 -r
 echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "Installing package..."
+    
+    # Check for existing installations and remove them first
+    if dpkg -l | grep -q "plugnpass"; then
+        echo "Removing previous installation..."
+        sudo apt remove -y plugnpass
+    fi
+    
+    # Check for stray launchers in user's bin directory
+    USER_LAUNCHER="$HOME/bin/plugnpass"
+    if [ -f "$USER_LAUNCHER" ]; then
+        echo "Removing old user launcher script..."
+        rm -f "$USER_LAUNCHER"
+    fi
+    
+    # Install the new package
+    echo "Installing new package..."
     sudo apt install ../plugnpass_*.deb
+    
+    # Verify installation
+    if command -v plugnpass &> /dev/null; then
+        echo ""
+        echo "Installation successful!"
+        plugnpass --version
+    else
+        echo ""
+        echo "Installation might have issues. Please check your PATH."
+    fi
 fi 
