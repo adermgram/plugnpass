@@ -14,15 +14,16 @@ PlugNPass (pronounced "Plug and Pass") is a simple, user-friendly utility for tr
 - **File Filtering**: Automatically hides system files for a cleaner view
 - **Search**: Easily find files by name
 - **Multiple Apps**: Access documents from various iOS apps
+- **Cross-Platform**: Works across different Linux distributions
 
 ## Installation
 
 ### Method 1: Using the .deb package (Recommended for Ubuntu/Debian)
 
-Download the .deb package and install with:
+Download the latest .deb package from the [Releases page](https://github.com/adermgram/plugnpass/releases) and install with:
 
 ```bash
-sudo apt install ./plugnpass_1.0.0_all.deb
+sudo apt install ./plugnpass_1.0.1_all.deb
 ```
 
 This will automatically install all dependencies and set up the application.
@@ -69,10 +70,17 @@ The installer will:
 - **Device Not Found**: Make sure your device is unlocked and trusted your computer
 - **Mount Errors**: Use the "Reset Mount Point" or "Deep Clean Mount" buttons
 - **Permission Issues**: Ensure proper permissions with `sudo usermod -aG fuse YOUR_USERNAME`
+- **Launcher Issues**: If the application doesn't start, try running `/usr/bin/plugnpass` directly
+- **Multiple Installations**: If you've previously installed manually, remove old installations before installing the .deb package
 
 ## How It Works
 
 PlugNPass uses the libimobiledevice and ifuse libraries to safely communicate with your iOS device without needing iTunes. The application mounts your device's filesystem locally, allowing standard file operations.
+
+## Version History
+
+- **v1.0.1**: Improved package reliability, fixed installation issues, better cross-distribution compatibility
+- **v1.0.0**: Initial release with basic file transfer functionality
 
 ## License
 
