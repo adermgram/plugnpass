@@ -36,10 +36,17 @@ jobs:
       run: |
         chmod +x ./build_deb.sh
         CI=true ./build_deb.sh
+        # Copy the deb file to the current workspace
+        if [[ -f "../plugnpass_"*.deb ]]; then
+          cp -v "../plugnpass_"*.deb ./
+        fi
         # For GitHub release tagging
         if [[ "${{ github.ref }}" == refs/tags/* ]]; then
           TAG_NAME="${{ github.ref_name }}"
-          cp ../plugnpass_*.deb ./plugnpass_${TAG_NAME#v}_all.deb
+          ORIG_DEB=$(ls plugnpass_*.deb 2>/dev/null || echo "")
+          if [[ -n "$ORIG_DEB" ]]; then
+            cp -v "$ORIG_DEB" "./plugnpass_${TAG_NAME#v}_all.deb"
+          fi
         fi
         
     - name: Build simple package
@@ -53,16 +60,15 @@ jobs:
         name: plugnpass-packages
         path: |
           ./plugnpass-*.tar.gz
-          ../plugnpass_*.deb
+          ./plugnpass_*.deb
     
     - name: Upload to release
       if: github.event_name == 'release' || startsWith(github.ref, 'refs/tags/')
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          plugnpass-*.tar.gz
-          ../plugnpass_*.deb
-          plugnpass_*_all.deb
+          ./plugnpass-*.tar.gz
+          ./plugnpass_*.deb
         draft: false
         generate_release_notes: true
         token: ${{ secrets.GITHUB_TOKEN }} 
